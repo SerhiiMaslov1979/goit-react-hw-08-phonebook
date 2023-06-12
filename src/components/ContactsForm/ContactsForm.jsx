@@ -3,8 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import '../ContactsForm/ContactsForm.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
-import { addContact } from '../../redux/operations.js';
+import { selectContacts } from '../../redux/Contacts/selectors';
+import { addContact } from '../../redux/Contacts/operations.js';
 
 const numberReg =
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
