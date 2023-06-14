@@ -35,7 +35,7 @@ import ContactsList from '../components/ContactsList/ContactsList';
 import { useEffect } from 'react';
 import { fetchContacts } from '../redux/Contacts/operations';
 
-export function ContactsPage() {
+export default function ContactsPage() {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 

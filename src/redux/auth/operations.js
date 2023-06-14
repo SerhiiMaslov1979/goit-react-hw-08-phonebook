@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -21,11 +21,8 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://connections-api.herokuapp.com/users/signup',
-        credentials
-      );
-      console.log(response.data.token);
+      const response = await axios.post('/users/signup', credentials);
+      // console.log(response.data.token);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(response.data.token);
       return response.data;
@@ -43,11 +40,8 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://connections-api.herokuapp.com/users/login',
-        credentials
-      );
-      console.log(response.data.token);
+      const response = await axios.post('/users/login', credentials);
+      // console.log(response.data.token);
       // After successful login, add the token to the HTTP header
       setAuthHeader(response.data.token);
       return response.data;
@@ -63,7 +57,7 @@ export const logIn = createAsyncThunk(
  */
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('https://connections-api.herokuapp.com/users/logout');
+    await axios.post('/users/logout');
     // After a successful logout, remove the token from the HTTP header
     clearAuthHeader();
   } catch (error) {
@@ -90,9 +84,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-      const response = await axios.get(
-        'https://connections-api.herokuapp.com/users/current'
-      );
+      const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
