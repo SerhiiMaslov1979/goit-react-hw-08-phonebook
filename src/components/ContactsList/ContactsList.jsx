@@ -17,7 +17,12 @@ const ContactsList = () => {
           <p className="ContactsList__text">
             {name}: {number}
           </p>
-          <button onClick={() => dispatch(deleteContact(id))}>Delete</button>
+          <button
+            className="Button"
+            onClick={() => dispatch(deleteContact(id))}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>
