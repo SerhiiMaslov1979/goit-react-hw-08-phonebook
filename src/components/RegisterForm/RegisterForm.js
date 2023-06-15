@@ -34,7 +34,7 @@ export const RegisterForm = () => {
           type="password"
           name="password"
           required
-          minLength={2}
+          minLength={8}
           maxLength={30}
         />
       </label>

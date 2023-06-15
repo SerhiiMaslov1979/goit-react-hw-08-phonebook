@@ -5,6 +5,7 @@ import '../ContactsForm/ContactsForm.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts } from '../../redux/Contacts/selectors';
 import { addContact } from '../../redux/Contacts/operations.js';
+import toast from 'react-hot-toast';
 
 const numberReg =
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
@@ -43,7 +44,8 @@ export const ContactsForm = () => {
         contact => values.name.toLowerCase() === contact.name.toLowerCase()
       )
     ) {
-      alert(`${values.name} is already in contacts`);
+      toast.error(`${values.name} is already in contacts`);
+      // toast.error(`${values.name} Фі яка гидота!`);
       return;
     }
     dispatch(addContact({ ...values }));
